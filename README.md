@@ -23,11 +23,15 @@ gem 'jimuguri'
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install jimuguri
+```sh
+$ gem install jimuguri
+```
 
 ## Descriprion
 
@@ -57,7 +61,7 @@ app.run ARGV
 
 ### create application
 
-```
+```ruby
 app = Jimuguri::Cli.new(name: 'testapp', description: 'sample app created by ygnmhdtt', version: '1.0.1')
 ```
 You can specify `name`, `description`, `version` .
@@ -66,7 +70,7 @@ Recommend to specify.
 
 ### add action
 
-```
+```ruby
 app.add_action 'demo', 'show demonstration of jimuguri' do
   puts "options[:force]: #{app.options[:force]}"
   puts "options[:output]: #{app.options[:output]}"
@@ -79,7 +83,7 @@ You need to specify `command name`, `description`, `what to do` .
 
 If you want to use passed options, like this:
 
-```
+```ruby
 puts app.options[:force]
 ```
 
@@ -87,7 +91,7 @@ Description of symbol name of options follows.
 
 ### add options
 
-```
+```ruby
 app.add_option 'f', 'force', 'Do something force'
 app.add_option 'o FILENAME', 'output FILENAME(required)', 'Specify output file.'
 app.add_option 'm [message]', 'message [message](optional)', 'Shows message if passed'
@@ -97,7 +101,7 @@ You can specify `short_option` , `long_option` , `description` .
 `description` is used by `help`.
 When use it:
 
-```
+```sh
 # short option needs 1 dash
 ruby sample.rb demo -f
 
@@ -109,7 +113,7 @@ ruby sample.rb demo --force
 
 If you need argument, like this:
 
-```
+```ruby
 app.add_option 'o FILENAME', 'output FILENAME(required)', 'Specify output file.'
 ```
 
@@ -117,7 +121,7 @@ If `FILENAME` is not given, it shows `help`.
 
 You can set argument optional, like this:
 
-```
+```ruby
 app.add_option 'm [message]', 'message [message](optional)', 'Shows message if passed'
 ```
 
@@ -127,7 +131,7 @@ Argument name with `[]` , and it will be optional.
 
 `help` and `version` will be auto-generated so you don't have to add_action.
 
-```
+```sh
 $ ruby sample.rb help
 NAME:
     testapp - sample app created by ygnmhdtt
@@ -152,7 +156,7 @@ OPTIONS:
     -m [message] --message [message](optional)  Shows message if passed
 ```
 
-```
+```sh
 $ ruby sample.rb version
 1.0.1
 ```
@@ -161,7 +165,7 @@ $ ruby sample.rb version
 
 Sample Code:
 
-```
+```ruby
 require_relative './lib/jimuguri'
 
 class Test
@@ -205,7 +209,7 @@ end
 
 When no options passed, options will be nil.
 
-```
+```sh
 $ ruby sample.rb demo
 options: {}
 options class: Hash
@@ -226,7 +230,7 @@ options[:message] is nil: true
 
 When you specify options:
 
-```
+```sh
 $ ruby sample.rb demo -f -o output.txt -m 'aaa'
 options: {:force=>true, :output=>"output.txt", :message=>"aaa"}
 options class: Hash
