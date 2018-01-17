@@ -9,11 +9,12 @@ class Cli
     @description = description
     @version = version
     @cmds = {}
-    @helps = {}
+    @cmd_helps = {}
     init_help
     init_version
     @opt = OptionParser.new
     @options = {}
+    @opt_helps = []
   end
 
   # auto generate help
@@ -22,7 +23,7 @@ class Cli
       print_help
     end
     @cmds[:help] = help_proc
-    @helps[:help] = 'Shows a list of commands or help for one command'
+    @cmd_helps[:help] = 'Shows a list of commands or help for one command'
   end
 
   # auto generate version
@@ -31,7 +32,7 @@ class Cli
       print_version
     end
     @cmds[:version] = version_proc
-    @helps[:version] = 'Shows version'
+    @cmd_helps[:version] = 'Shows version'
   end
 
   # add action by given block
@@ -40,24 +41,28 @@ class Cli
       raise 'block must be given'
     end
     @cmds[cmd.to_sym] = blk
-    @helps[cmd.to_sym] = help
+    @cmd_helps[cmd.to_sym] = help
   end
 
   def add_option(short, long, message)
     @opt.on("-#{short}", "--#{long}", message) {|v| @options[long.split(' ')[0].to_sym] = v}
-    puts long.to_sym
+    @opt_helps.push "-#{short} --#{long}\t#{message}"
   end
 
   def run(arg)
     # disable optparse default help, version
-    help if arg.include?('-h') || arg.include?('--help')
-    version if arg.include?('-v') || arg.include?('--version')
+    print_help if arg.include?('-h') || arg.include?('--help')
+    print_version if arg.include?('-v') || arg.include?('--version')
 
     # parse
-    help if !@opt.parse(arg)
+    begin
+      @opt.parse!(arg)
+    rescue
+      print_help
+    end
 
     action = @cmds[arg[0].to_sym]
-    help if action.nil?
+    print_help if action.nil?
 
     action.call
   end
@@ -97,9 +102,14 @@ class Cli
   end
 
   def generate_help
-    commands = ""
-    @helps.map {|cmd, help| commands << "    #{cmd.to_s}\t#{help}\n"}
-    help_string + commands
+    # concat commands
+    commands = "COMMANDS:\n"
+    @cmd_helps.map {|cmd, help| commands << "    #{cmd.to_s}\t#{help}\n"}
+
+    options = "\nOPTIONS:\n"
+    @opt_helps.map {|help| options << "    #{help}\n"}
+
+    help_string + commands + options
   end
 
   def help_string
@@ -113,7 +123,6 @@ class Cli
       VERSION:
           #{version}
       
-      COMMANDS:
     HERE
   end
 end
