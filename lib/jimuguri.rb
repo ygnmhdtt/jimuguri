@@ -3,8 +3,8 @@ require "jimuguri/version"
 module Jimuguri
   class Cli
     def initialize(name: 'sampleapp', 
-		   description: 'sample app created by jimuguri',
-		   version: '1.0')
+        description: 'sample app created by jimuguri',
+        version: '0.0')
       @name = name
       @description = description
       @version = version
