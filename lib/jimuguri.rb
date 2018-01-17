@@ -40,5 +40,23 @@ module Jimuguri
     def version
       @version
     end
+
+    def help
+      str = <<~"HERE"
+        NAME:
+            #{@name} - #{@description}
+        
+        USAGE:
+            #{@name} command [command options] [arguments...]
+        
+        VERSION:
+            #{version}
+        
+        COMMANDS:
+            help  Shows a list of commands or help for one command
+      HERE
+      
+      puts str
+    end
   end
 end
