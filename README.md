@@ -1,8 +1,18 @@
-# Jimuguri
+# Note: work in progress
+Todo:
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/jimuguri`. To experiment with that code, run `bin/console` for an interactive prompt.
+* parse arguments (by optparse)
+* enable to use args in block
 
-TODO: Delete this and the text above, and describe your gem
+# jimuguri - very simple ruby command line tool creator
+
+Jimuguri enables you to create simple command line tool for ruby.
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Examples](#examples)
+* [License](#license)
 
 ## Installation
 
@@ -20,24 +30,45 @@ Or install it yourself as:
 
     $ gem install jimuguri
 
-## Usage
+## Examples
 
-TODO: Write usage instructions here
+```ruby
+# create app instance
+app = Jimuguri::Cli.new(name: 'testapp', description: 'sample app created by ygnmhdtt', version: '1.0.1')
 
-## Development
+# you can add action by block
+# add_action gets command_name, help_string, do_block
+app.add_action 'hello', 'puts hello string' do
+  puts 'hello'
+end
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+# start
+app.run ARGV
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+$ ruby sample.rb hello
+hello
+```
 
-## Contributing
+`help` will be auto-generated so you don't have to add_action.
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jimuguri. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+```
+$ ruby sample.rb help
+NAME:
+    testapp - sample app created by ygnmhdtt
+
+USAGE:
+    testapp command [command options] [arguments...]
+
+VERSION:
+    1.0.1
+
+COMMANDS:
+    help        Shows a list of commands or help for one command
+    hello       puts hello string
+```
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Jimuguri project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/jimuguri/blob/master/CODE_OF_CONDUCT.md).
+[MIT](https://github.com/ygnmhdtt/jimuguri/blob/master/LICENSE)
