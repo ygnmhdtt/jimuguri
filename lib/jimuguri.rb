@@ -8,6 +8,11 @@ module Jimuguri
       @name = name
       @description = description
       @version = version
+      @cmds = {}
+      help_proc = Proc.new do
+        help
+      end
+      @cmds[:help] = help_proc
     end
 
     def 
