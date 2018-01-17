@@ -6,8 +6,8 @@ require "jimuguri/version"
 Gem::Specification.new do |spec|
   spec.name          = "jimuguri"
   spec.version       = Jimuguri::VERSION
-  spec.authors       = ["Write your name"]
-  spec.email         = ["Write your email address"]
+  spec.authors       = ["ygnmhdtt"]
+  spec.email         = ["ygnmhdtt@gmail.com"]
 
   spec.summary       = %q{Write a short summary, because RubyGems requires one.}
   spec.description   = %q{Write a longer description or delete this line.}
