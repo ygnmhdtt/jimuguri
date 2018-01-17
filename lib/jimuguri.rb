@@ -10,7 +10,7 @@ module Jimuguri
       @version = version
       @cmds = {}
       help_proc = Proc.new do
-        help
+        puts help
       end
       @cmds[:help] = help_proc
     end
@@ -42,7 +42,7 @@ module Jimuguri
     end
 
     def help
-      str = <<~"HERE"
+      <<~"HERE"
         NAME:
             #{@name} - #{@description}
         
@@ -55,8 +55,6 @@ module Jimuguri
         COMMANDS:
             help  Shows a list of commands or help for one command
       HERE
-      
-      puts str
     end
   end
 end
