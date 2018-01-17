@@ -5,6 +5,11 @@ Jimuguri enables you to create simple command line tool for ruby.
 ## Table of Contents
 
 * [Installation](#installation)
+* [Description](#description)
+ - [overview](#overview)
+ - [add action](#add-action)
+ - [add options](#add-options)
+ - [other commands](#other-commands)
 * [Examples](#examples)
 * [License](#license)
 
@@ -24,7 +29,7 @@ Or install it yourself as:
 
     $ gem install jimuguri
 
-## Examples
+## Descriprion
 
 ### overview
 
@@ -152,7 +157,7 @@ $ ruby sample.rb version
 1.0.1
 ```
 
-### command examples
+## Examples
 
 Sample Code:
 
