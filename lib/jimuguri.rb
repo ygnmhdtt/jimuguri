@@ -15,7 +15,10 @@ module Jimuguri
       @cmds[:help] = help_proc
     end
 
-    def 
+    def add_action(cmd, help, &blk)
+      p cmd
+      @cmds[cmd.to_sym] = blk
+    end
 
     def name
       @name
