@@ -20,6 +20,10 @@ module Jimuguri
       @cmds[cmd.to_sym] = blk
     end
 
+    def run(arg)
+      action = @cmds[arg.to_sym]
+      action.call
+    end
     def name
       @name
     end
