@@ -24,6 +24,11 @@ module Jimuguri
       action = @cmds[arg.to_sym]
       action.call
     end
+
+    def actions
+      @cmds
+    end
+
     def name
       @name
     end
