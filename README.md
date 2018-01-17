@@ -87,7 +87,7 @@ If you want to use passed options, like this:
 puts app.options[:force]
 ```
 
-Description of symbol name of options follows.
+Description of symbol follows.
 
 ### add options
 
@@ -99,6 +99,7 @@ app.add_option 'm [message]', 'message [message](optional)', 'Shows message if p
 
 You can specify `short_option` , `long_option` , `description` .
 `description` is used by `help`.
+And, `long_option` will be symbol to use it.
 When use it:
 
 ```sh
