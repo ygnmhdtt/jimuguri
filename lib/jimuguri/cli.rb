@@ -50,6 +50,8 @@ class Cli
   end
 
   def run(arg)
+    print_help if arg.size == 0
+
     # disable optparse default help, version
     print_help if arg.include?('-h') || arg.include?('--help')
     print_version if arg.include?('-v') || arg.include?('--version')
