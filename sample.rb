@@ -28,10 +28,18 @@ class Test
       puts "options[:message] is nil: #{app.options[:message].nil?}"
     end
 
+    app.add_action 'demo2', 'shows demonstration of jimuguri' do
+      call
+    end
+
     app.add_option 'f', 'force', 'Do something force'
     app.add_option 'o FILENAME', 'output FILENAME(required)', 'Specify output file.'
     app.add_option 'm [message]', 'message [message](optional)', 'Shows message if passed'
     app.run ARGV
+  end
+
+  def call
+    print "you can call method"
   end
 
   Test.new.run

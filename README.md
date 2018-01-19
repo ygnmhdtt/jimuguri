@@ -1,6 +1,7 @@
 # jimuguri - very simple ruby command line tool creator
 
-Jimuguri enables you to create simple command line tool for ruby.
+Jimuguri enables you to create simple command line tool for ruby.  
+This does not depend on any other libraries except defaults.
 
 ## Table of Contents
 
@@ -64,8 +65,8 @@ app.run ARGV
 ```ruby
 app = Jimuguri::Cli.new(name: 'testapp', description: 'sample app created by ygnmhdtt', version: '1.0.1')
 ```
-You can specify `name`, `description`, `version` .
-All parameters are optional. But if you don't specify, they will be auto-generated.
+You can specify `name`, `description`, `version` .  
+All parameters are optional. But if you don't specify, they will be auto-generated.  
 Recommend to specify.
 
 ### add action
@@ -78,7 +79,7 @@ app.add_action 'demo', 'show demonstration of jimuguri' do
 end
 ```
 
-You need to specify `command name`, `description`, `what to do` .
+You need to specify `command name`, `description`, `what to do` .  
 `description` is used by `help` .
 
 If you want to use passed options, like this:
@@ -97,10 +98,10 @@ app.add_option 'o FILENAME', 'output FILENAME(required)', 'Specify output file.'
 app.add_option 'm [message]', 'message [message](optional)', 'Shows message if passed'
 ```
 
-You can specify `short_option` , `long_option` , `description` .
-`description` is used by `help`.
-And, `long_option` will be symbol to use it.
-When use it:
+You can specify `short_option` , `long_option` , `description` .  
+`description` is used by `help`.  
+And, `long_option` will be symbol to use it.  
+When use it:  
 
 ```sh
 # short option needs 1 dash
@@ -120,7 +121,7 @@ app.add_option 'o FILENAME', 'output FILENAME(required)', 'Specify output file.'
 
 If `FILENAME` is not given, it shows `help`.
 
-You can set argument optional, like this:
+You can set argument optional, like this:  
 
 ```ruby
 app.add_option 'm [message]', 'message [message](optional)', 'Shows message if passed'
@@ -163,6 +164,8 @@ $ ruby sample.rb version
 ```
 
 ## Examples
+
+These code is in `/sample.rb` .  
 
 Sample Code:
 
@@ -253,6 +256,40 @@ options[:message] is nil: false
 `[message]` is optional, but if given, you can get arg.
 
 If optional arg was not given, it will be `nil` .
+
+### calling method
+
+Method can be called in block.
+
+```ruby
+require_relative './lib/jimuguri'
+
+class Test
+
+  def run
+    app = Cli.new(name: 'testapp', description: 'sample app created by ygnmhdtt', version: '1.0.1')
+    app.add_action 'demo', 'shows demonstration of jimuguri' do
+      call_method
+    end
+  end
+
+  def call_method
+    print "you can call method"
+  end
+
+  Test.new.run
+
+end
+```
+
+```sh
+$ ruby sample.rb demo2
+you can call method
+```
+
+## Development
+
+* Run tests with `bundle exec rake test`
 
 ## License
 
