@@ -120,7 +120,7 @@ class Cli
           #{@name} - #{@description}
       
       USAGE:
-          #{@name} command [command options] [arguments...]
+          ruby `file_name.rb` command [command options] [arguments...]
       
       VERSION:
           #{version}
