@@ -12,6 +12,7 @@ This does not depend on any other libraries except defaults.
  - [add options](#add-options)
  - [other commands](#other-commands)
 * [Examples](#examples)
+* [Development](#development)
 * [License](#license)
 
 ## Installation
